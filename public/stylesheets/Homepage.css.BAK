@@ -1,0 +1,68 @@
+body 
+{
+    background-color:lightblue;
+    overflow-y:scroll;
+    font-family:Arial;
+    max-height: 100%;
+    max-width: 100%;
+}
+.header
+{
+    background-color:black;
+    height:100px;
+}
+.locker1_form
+{
+    margin-top:5%;
+    margin-left:15%;
+    padding:1%;
+    background-color:rgba(250,250,250,0.5);
+    border:1px solid rgba(0, 0, 0, 0.3);
+    height:50%;
+    font-family:Arial;
+    font-size:100%;
+    float: left;
+}
+.locker1_form ul
+{
+    padding:0%;
+    margin:5%;
+}
+button 
+{
+    border: 1px solid #ABACA5;
+    background:#D0771E;
+    color:#FFF;
+    padding: 3%;
+    
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+.locker2_form
+{
+    margin-top:5%;
+    margin-left: 15%;
+    margin-bottom:5%;
+    padding:1%;
+    background-color:rgba(250,250,250,0.5);
+    border:1px solid rgba(0, 0, 0, 0.3);
+    width: 100%;
+    font-family:Arial;
+    font-size:100%;
+    float: left;
+}
+.locker2_form ul
+{
+    padding:0%;
+    margin:5%;
+}
+.locker2_form ul
+{
+    padding:0%;
+    margin:5%;
+}
+img
+{
+    width: 100%;
+    height:auto;
+}
+

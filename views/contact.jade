@@ -1,0 +1,74 @@
+extends layout
+
+block content
+
+  br
+  .div-wrapper.black
+    .row
+      .col.s12.m12.l3.orange.black-text
+        h5 Contact Details
+
+        .section
+          ul
+            li
+              .row
+                .col.s2.m2.l2
+                  i.fa.fa-map-marker.small.left
+                .col.s10.m10.l10
+                  | 3/F PUP College of Engineering
+                  br
+                  | CEA Building, NDC Campus
+                  br
+                  | Anonas cor. Pureza St.
+                  br
+                  | Sta. Mesa, Manila 01008
+
+              .row
+                .col.s2.m2.l2
+                  i.fa.fa-mobile.small.left
+                .col.s10.m10.l10
+                  b
+                    | Globe/TM:
+                  |&nbsp; +63 906 696 0078
+                  br
+                  b
+                    | SUN:
+                  |&nbsp; +63 925 510 3280
+
+              .row
+                .col.s2.m2.l2
+                  i.fa.fa-phone.small.left
+                .col.s10.m10.l10
+                  | alalal
+
+              .row
+                .col.s2.m2.l2
+                  i.fa.fa-envelope-o.small.left
+                .col.s10.m10.l10
+                  | ksssk
+      .col.s12.m12.l9.black.white-text
+        h5 Send us an E-mail
+        
+        .row
+          .input-field
+            form#contactForm(method= 'post', action= 'contact/send-email', onsubmit='return validateMyForm()', name= 'contactForm')
+              .col.s12.m6.l6
+                | Name
+                br
+                input#name.white(type= 'text', name= 'name', placeholder= 'Juan dela Cruz', maxlength= '45', style= 'text-transform: capitalize', value= nameValue)
+              .col.s12.m6.l6
+                | E-mail
+                br
+                input#email.white(type= 'text', name= 'email', placeholder= 'juandelacruz12@gmail.com', style= 'text-transform: lowercase', value= emailValue)
+              .col.s12.m12.l12
+                | Message
+                br
+                textarea.white#message.materialize-textarea(name= 'message', placeholder= 'Enter your Message or Inquiries.', length= '160', maxLength= '160')
+                  | #{messageValue}
+                br
+                button.orange.black-text.waves-effect.waves-dark.btn(type= 'submit')
+                    b
+                      | SEND MY MESSAGE
+                br
+                br
+                | #{statusValue}

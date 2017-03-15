@@ -1,0 +1,51 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('../images/back18.png')
+}
+
+a {
+  color: #00B7FF;
+}
+nav
+ {
+	 background-color: black;
+}
+.link {
+	color: white;
+	text-decoration: underline;
+}
+
+textarea,
+input {
+	color: black;
+}
+
+textarea::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+	color: gray !important;
+}
+ 
+textarea:-moz-placeholder,
+input:-moz-placeholder { /* Firefox 18- */
+	color: gray !important;
+}
+ 
+textarea::-moz-placeholder,
+input::-moz-placeholder {  /* Firefox 19+ */
+	color: gray !important;
+}
+
+textarea:-ms-input-placeholder,
+input:-ms-input-placeholder {
+	color: gray !important;
+}
+
+.input-field input[type=text]:focus {
+     border: 2px solid orange;
+     box-shadow: 0 1px 0 0 orange;
+}
+
+#message:focus {
+     border: 2px solid orange;
+     box-shadow: 0 1px 0 0 orange;
+}

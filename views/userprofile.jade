@@ -1,0 +1,30 @@
+extends layout
+
+block content
+    br
+    section.user_form.col-3.col-m-12
+      form
+        ul
+          li USER PROFILE
+        ul
+          li
+            input#studentnumber(type='text', placeholder='Student Number', required='')
+          li
+            input#firstname(type='text', placeholder='First Name', required='')
+          li
+            input#middlename(type='text', placeholder='Middle Name', required='') 
+          li
+            input#lastname(type='text', placeholder='Last Name', required='')
+          li
+            input#yearsectionname(type='text', placeholder='Year & Section', required='')  
+          li
+            input#mobilenumber(type='text', placeholder='Contact Number', required='')  
+          li
+            input#email(type='email', placeholder='e-mail', required='')
+          li
+            input#password(type='Password', placeholder='Password', required='')
+          li
+            input#confirmpassword(type='Password', placeholder='Confirm Password', required='')
+        ul
+          li
+            input(type='submit', value='Save Changes')

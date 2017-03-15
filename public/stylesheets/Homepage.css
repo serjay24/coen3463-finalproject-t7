@@ -1,0 +1,19 @@
+.card.card-selectable {
+    background-color: black;
+    color: orange;
+}
+
+.card:hover {
+    background-color: orange;
+    color: black;
+}
+
+.onHover {
+    background-color: black;
+    color: orange;
+}
+
+.onHover:hover {
+    background-color: orange;
+    color: black;
+}

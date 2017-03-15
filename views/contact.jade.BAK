@@ -1,0 +1,53 @@
+extends layout
+
+block content
+    br
+    section.details_form.col-3.col-m-9
+      form(name='contact_us')
+        h3 Contact Details
+        ul
+          .row
+                .col.s2.m2.l2
+                  i.fa.fa-map-marker.small.left
+                .col.s10.m10.l10
+                  | 3/F PUP College of Engineering
+                  br
+                  | CEA Building, NDC Campus
+                  br
+                  | Anonas cor. Pureza St.
+                  br
+                  | Sta. Mesa, Manila 01008
+                  br
+                  br
+              .row
+                .col.s2.m2.l2
+                  i.fa.fa-mobile.small.left
+                .col.s10.m10.l10
+                  b
+                    | Globe/TM:
+                  |&nbsp; +63 906 696 0078
+                  br
+                  b
+                    | SUN:
+                  |&nbsp; +63 925 510 3280 
+           
+                   
+    section.send_form.col-3.col-m-9
+      form(name='contact_us')
+        ul
+          h3 Send Us E-mail
+          li
+            input#name(type='text', placeholder='Name')
+          li
+            input#email(type='email', placeholder='e-mail', required='')
+          li
+         textarea(rows='6', name='comment')
+            | Enter text here...     
+          li
+            button(type='submit', value='sumbit') Send
+
+   
+     
+              
+    
+  

@@ -1,0 +1,36 @@
+extends layout
+
+block content
+    br
+    .row  
+     h1.center Welcome!
+      br   
+    section.locker1_form.col-3.col-m-9
+      form(name='locker1')
+        h4 Locker 1
+        ul
+          .row
+                .col.s10.m10.l10
+                  | Beside CEA Library
+            .row
+                .col.s10.m10.l10
+                a.brand-logo.center.hide-on-med-and-up(href='/')
+                img(src= '../../images/locker_icon.ico', width="460" height="345")
+            .row
+                .col.s10.m10.l10
+                button(type='submit', value='sumbit') Reserve    
+
+    section.locker2_form.col-3.col-m-9
+      form(name='locker2')
+        h4 Locker 2
+        ul
+          .row
+                .col.s10.m10.l10
+                  | Near Access Office
+            .row
+                .col.s10.m10.l10
+                a.brand-logo.center.hide-on-med-and-up(href='/')
+                img(src= '../../images/locker_icon.ico')
+            .row
+                .col.s10.m10.l10
+                button(type='submit', value='sumbit') Reserve
