@@ -1,24 +1,33 @@
 extends layout
 
 block content
-    br
-    section.Login_form.col-3.col-m-9
-      form(name='login_box')
-        ul
-          li LOG-IN
-          li
-            input#studentnumber(type='text', placeholder='Student Number', required='')
-          li
-            input#password(type='password', placeholder='password')
-          li
-            button(type='submit', value='sumbit') Log-in
-          li
-            a(href='#') Forgot your password?
-    section.Create_account.col-3.col-m-9
-      form(name='create_account')
-        ul
-          li Don't have account?
-          li
-            button(type='submit', value='submit') Create account   
-            br
+  br
+  .rowl.col-3.col-m-9
+      h4 USER LOGIN
 
+      if (error)
+        .row
+          .col.s12.m12.l12.offset-l2.offset-s2.offset-m2
+            h6#alert.white-text(style= "padding: 1%")= error
+
+      form(method='post', action='/auth/login')
+        br
+        .row
+          .input-field.white-text
+            input#username.validate.white-text(type='text', name= 'username', required)
+            label(for='email') Username
+
+          .input-field.white-text
+            input#password.validate(type='password', name= 'password', required)
+            label(for='password') Password
+        br 
+        .row.center
+          button.btn.waves-effect.waves-light(type='submit', name='action')
+            | Login
+            i.fa.fa-sign-in.right.small
+
+        .row
+          p.center.white-text
+              | Don't have account? Click 
+              b
+                a.blue-text.link(href= '/signup') Sign-Up     
