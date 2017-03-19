@@ -19,8 +19,8 @@ html
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css')
 
     link(rel='stylesheet', href='/stylesheets/style.css')
-    //link(rel= 'stylesheet', type= 'text/css', href= '../../stylesheets/Login.css')  
-    //link(rel= 'stylesheet', type= 'text/css', href= '../../stylesheets/signup.css')
+    link(rel= 'stylesheet', type= 'text/css', href= '../../stylesheets/Login.css')  
+    link(rel= 'stylesheet', type= 'text/css', href= '../../stylesheets/signup.css')
     //link(rel= 'stylesheet', type= 'text/css', href= '../../stylesheets/Contact.css')
     link(rel= 'stylesheet', type= 'text/css', href= '../../stylesheets/Homepage.css')
     //link(rel= 'stylesheet', type= 'text/css', href= '../../stylesheets/locker.css')
@@ -28,6 +28,13 @@ html
     link(rel= 'icon', type= 'image/ico', href= '../../images/locker_icon.ico')
 
   body
+
+    ul.dropdown-content#dropdown1.black
+      li
+        a.onHover(href="/profile") View Profile
+      li
+        a.onHover(href="/auth/logout") Logout
+
     nav
       .nav-wrapper
         a.brand-logo.left.hide-on-small-only(href='/')
@@ -43,15 +50,20 @@ html
               i.fa.fa-home.left.small
               | Home
           li
-            a.onHover(href='/Contact') ContactUs
-          li
-            a.onHover(href='/userprofile') Profile
-          li
-            a.onHover(href='/login') Login
+            a.onHover(href='/Contact') Contact Us
 
           if (user)
             li
-              a.onHover(href='/auth/logout') Logout
+              a.dropdown-button.onHover(data-activates="dropdown1")
+                i.fa.fa-caret-down.tiny.right
+                if (user.first_name == "")
+                  | #{user.username}
+                else
+                  | #{user.first_name} #{user.last_name}
+
+          else
+            li
+              a.onHover(href='/auth/login') Login
 
         ul#mobile-demo.side-nav.black
           li
@@ -60,21 +72,21 @@ html
               | Home
           li
             a.orange-text.waves-effect.waves-white(href='/Contact')
-              i.fa.fa-search.left.small.orange-text
               | ContactUs
-          li
-            a.orange-text.waves-effect.waves-white(href='/userprofile')
-              i.fa.fa-plus-square-o.left.small.orange-text
-              | Profile
-          li
-            a.orange-text.waves-effect.waves-white(href='/login')
-              i.fa.fa-plus-square-o.left.small.orange-text
-              | Login
+          
           if (user)
+            
             li
-              a.orange-text.waves-effect.waves-white(href='/auth/logout')
-                i.fa.fa-sign-out.left.small.orange-text
-                | Logout
+              a.dropdown-button.onHover(data-activates="dropdown1")
+                i.fa.fa-caret-down.tiny.right
+                if (user.first_name == "")
+                  | #{user.username}
+                else
+                  | #{user.first_name} #{user.last_name}
+          else
+            li
+              a.orange-text.waves-effect.waves-white(href='auth/login')
+                | Login
     
     block content
     

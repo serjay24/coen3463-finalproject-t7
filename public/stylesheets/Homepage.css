@@ -9,11 +9,11 @@
 }
 
 .onHover {
-    background-color: black;
-    color: orange;
+    background-color: black !important;
+    color: orange !important;
 }
 
 .onHover:hover {
-    background-color: orange;
-    color: black;
+    background-color: orange !important;
+    color: black !important;
 }

@@ -3,4 +3,5 @@ $(document).ready(function(){
       $(".button-collapse").sideNav({
       	menuWidth: 200
       });
+      $(".dropdown-button").dropdown({hover: true});
 });
