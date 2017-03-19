@@ -3,7 +3,7 @@ extends layout
 block content
   br
   .container.rown.col-4.col-m-9
-      h4 SIGNUP
+      h4.white-text.center-align SIGNUP
       form(method= 'POST', action= '/auth/signup')
         if (status)
             h6.white-text.red(style= "padding: 1%")= status
@@ -37,4 +37,4 @@ block content
             p.white-text.center
                 | Already have account? Click 
                 b
-                  a.blue-text.link(href= '/login') Login
+                  a.blue-text.link(href= '/auth/login') Login

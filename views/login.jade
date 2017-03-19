@@ -1,32 +1,9 @@
 extends layout
 
 block content
-
-    br
-    section.Login_form.col-3.col-m-9
-      form(method='post', action='/auth/login', name='login_box')
-        ul
-          li LOG-IN
-          li
-            input#studentnumber(type='text', placeholder='Student Number', name='email')
-          li
-            input#password(type='password', placeholder='password', name='password')
-          li
-            button(type='submit', value='sumbit') Log-in
-          li
-            a(href='#') Forgot your password?
-    section.Create_account.col-3.col-m-9
-      form(name='create_account')
-        ul
-          li Don't have account?
-          li
-            button(type='submit', value='submit') Create account   
-            br
-
   br
   .rowl.col-3.col-m-9
-      h4 USER LOGIN
-
+      h4.white-text.center-align USER LOGIN
 
       if (error)
         .row
@@ -53,4 +30,4 @@ block content
           p.center.white-text
               | Don't have account? Click 
               b
-                a.blue-text.link(href= '/signup') Sign-Up     
+                a.blue-text.link(href= '/auth/signup') Sign-Up     
