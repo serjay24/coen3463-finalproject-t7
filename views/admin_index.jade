@@ -1,0 +1,28 @@
+extends admin_layout
+
+block content
+  br
+
+  if (user)
+    .container.orange-text
+      h2
+          | Reserve a Locker Now
+
+    br
+    
+    .container
+      .row
+        a.card-select(href="/locker/locker1")
+          .col.s12.m6.l6
+            .card.card-selectable
+              .card-content
+                h4.center Beside CEA's Library
+                br
+                img(src="../../images/locker_icon.ico")
+        a(href="/locker/locker2")
+          .col.s12.m6.l6
+            .card.card-selectable
+              .card-content
+                h4.center Near ACCESS Office
+                br
+                img(src="../../images/locker_icon.ico")

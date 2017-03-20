@@ -11,6 +11,9 @@ block content
       | Cluster: #{locker[0].cluster}
     h5.left-align
       | Locker: #{locker[0].cluster}#{locker[0].lockerNumber}
+    h5.left-align
+      | Will be reserved to: #{user.name}
+    br
 
     a.waves-effect.waves-light.btn-flat.black.orange-text(href='/locker/' + locker[0]._id + '/reserveCompletion')
       | Reserve this locker

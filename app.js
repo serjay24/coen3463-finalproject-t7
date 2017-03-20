@@ -30,6 +30,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
 var locker = require('./routes/locker');
+var admin = require('./routes/admin');
 
 var app = express();
 
@@ -73,6 +74,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/auth', auth);
 app.use('/locker', locker);
+app.use('/admin', admin);
 
 app.get('/userprofile', function(req, res){
   res.render('userprofile');

@@ -4,23 +4,23 @@ var Locker = require('../models/locker');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-/*
-	if(req.user) {
-		res.render('index', {
-			title: 'Express',
-		  	user: req.user
-		 });
-	}
-	else {
-		res.redirect('/auth/login')
-	}
-*/
+
 	var data = {
 		title: "Locker Reservation System",
 		user: req.user
 	}
 
-	res.render('index', data);
+	if(req.user) {
+		if(req.user.type === "Administrator") {
+			res.render('admin_index', data);
+		}
+		else {
+			res.render('index', data);
+		}
+	}
+	else {
+		res.redirect('/auth/login');
+	}
   
 });
 
@@ -30,10 +30,6 @@ router.get('/contact', function(req, res) {
 		user: req.user
 	}
 	res.render('contact', data)
-})
-
-router.get('/locker2', function(req, res) {
-	res.render('locker2', {title: "Choose Desire Locker"})
 })
 
 router.post('/createLocker', function(req, res) {

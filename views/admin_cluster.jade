@@ -1,0 +1,25 @@
+extends admin_layout
+
+block content
+
+  br
+
+  table.bordered.black.orange-text.center-align
+    thead
+      tr
+        th Locker
+        th Status
+        th Student Number
+        th Name
+        th Email
+        th Contact Number
+        
+    tbody
+      each locker, i in cluster
+          tr
+            td= locker.lockerNumber
+            td= locker.status
+            td= locker.studentNo
+            td= locker.owner
+            td= locker.email
+            td= locker.contact_number

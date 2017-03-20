@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     passportLocalMongoose = require('passport-local-mongoose');
+var Locker = require('./locker');
 
 var User = new Schema({
     studentNo: {

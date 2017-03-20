@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     passportLocalMongoose = require('passport-local-mongoose');
+var User = require('./users');
 
 var Locker = new Schema({
     cluster: {
@@ -8,9 +9,24 @@ var Locker = new Schema({
         required: true,
         default: ""
     },
+    studentNo:{
+        type: String,
+        default: ""
+    },
+    owner: {
+        type: String,
+        default: ""
+    },
+    email: {
+        type: String,
+        default: ""
+    },
+    contact_number: {
+        type: Number
+    },
     lockerNumber: {
         type: Number,
-        required: true
+        required: true,
     },
     status: {
         type: String,
