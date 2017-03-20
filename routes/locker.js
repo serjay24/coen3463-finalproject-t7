@@ -2,11 +2,24 @@ var express = require('express');
 var router = express.Router();
 var Locker = require('../models/locker');
 
+router.get('/locker1', function(req, res) {
+	Locker.find({cluster: "D"}).sort({lockerNumber: 1}).exec(function(err, clusterD) {
+		if (err) throw err;
+
+		var data = {
+			title: "Reserve Locker",
+			clusterD: clusterD,
+			user: req.user
+		}
+
+		res.render('locker1', data);
+	})
+})
+
 router.get('/locker2', function(req, res) {
 
 	var clusterAResult;
-	var cluserBResult;
-	var clusterCResult;
+	var clusterBResult;
 	
 	Locker.find({cluster: "A"}).sort({lockerNumber: 1}).exec(function(err, clusterA) {
 		if (err) throw err;
@@ -17,14 +30,19 @@ router.get('/locker2', function(req, res) {
 		Locker.find({cluster: "B"}).sort({lockerNumber: 1}).exec(function(err, clusterB) {
 			if (err) throw err;
 
-			
-			var data = {
-				title: "Choose your desire locker",
-				clusterA: clusterAResult,
-				clusterB: clusterB
-			}
-			//console.log(data);
-			res.render('locker2', data)
+			clusterBResult = clusterB;
+
+			Locker.find({cluster: "C"}).sort({lockerNumber: 1}).exec(function(err, clusterC) {
+				var data = {
+					title: "Choose your desire locker",
+					clusterA: clusterAResult,
+					clusterB: clusterBResult,
+					clusterC: clusterC,
+					user: req.user
+				}
+				//console.log(data);
+				res.render('locker2', data)
+			})
 		})
 	})
 })
@@ -101,7 +119,7 @@ router.get('/:lockerId/reserve', function(req, res) {
 		if (err) throw err;
 
 		var data = {
-			title: "Reserve this Locker",
+			title: "Reserve Locker",
 			locker: result,
 			//user: req.user
 		}
@@ -109,6 +127,15 @@ router.get('/:lockerId/reserve', function(req, res) {
 		res.render('reservation_page', data);
 	})
 	
+})
+
+router.get('/:lockerId/reserveCompletion', function(req, res) {
+	var lockerId = req.params.lockerId;
+
+	Locker.findByIdAndUpdate({_id: lockerId}, {status: "Reserved"}, function(err, result) {
+		console.log(result);
+		res.redirect('/')
+	})
 })
 
 module.exports = router;

@@ -7,15 +7,19 @@ block content
   br
   h3.center.white-text Choose your desire locker
   br
-  .row.black
+  .row.black.center
     .col.s12.m4.l4.white-text
       h4.center.white-text-text Cluster A
       br
       .row
         each locker, i in clusterA
           .col.s4.m4.l4
-            a.waves-effect.waves-white.btn-flat.orange.black-text.btn-large(href='/locker/' + locker._id + '/reserve')
-              | #{locker.cluster}#{locker.lockerNumber}
+            if (locker.status == 'Available')
+              a.waves-effect.waves-white.btn-flat.orange.black-text.btn-large(href='/locker/' + locker._id + '/reserve')
+                | #{locker.cluster}#{locker.lockerNumber}
+            else
+              a.waves-effect.waves-white.btn-flat.orange.black-text.btn-large.disabled(href='/locker/' + locker._id + '/reserve')
+                | #{locker.cluster}#{locker.lockerNumber}
 
     .col.s12.m4.l4
       h4.center.white-text Cluster B
@@ -23,8 +27,23 @@ block content
       .row
         each locker, i in clusterB
           .col.s4.m4.l4
-            a.waves-effect.waves-white.btn-flat.orange.black-text.btn-large(href='/locker/' + locker._id + '/reserve')
-              | #{locker.cluster}#{locker.lockerNumber}
+            if (locker.status == 'Available')
+              a.waves-effect.waves-white.btn-flat.orange.black-text.btn-large(href='/locker/' + locker._id + '/reserve')
+                | #{locker.cluster}#{locker.lockerNumber}
+            else
+              a.waves-effect.waves-white.btn-flat.orange.black-text.btn-large.disabled(href='/locker/' + locker._id + '/reserve')
+                | #{locker.cluster}#{locker.lockerNumber}
+
 
     .col.s12.m4.l4
-      | Cluster C Locker
+      h4.center.white-text Cluster C
+      br
+      .row
+        each locker, i in clusterC
+          .col.s4.m4.l4
+            if (locker.status == 'Available')
+              a.waves-effect.waves-white.btn-flat.orange.black-text.btn-large(href='/locker/' + locker._id + '/reserve')
+                | #{locker.cluster}#{locker.lockerNumber}
+            else
+              a.waves-effect.waves-white.btn-flat.orange.black-text.btn-large.disabled(href='/locker/' + locker._id + '/reserve')
+                | #{locker.cluster}#{locker.lockerNumber}

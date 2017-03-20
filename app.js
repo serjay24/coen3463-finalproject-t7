@@ -74,11 +74,6 @@ app.use('/users', users);
 app.use('/auth', auth);
 app.use('/locker', locker);
 
-
-app.get('/locker1', function(req, res){
-  res.render('locker1');
-});
-
 app.get('/userprofile', function(req, res){
   res.render('userprofile');
 });
