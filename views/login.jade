@@ -2,19 +2,19 @@ extends layout
 
 block content
   br
-  .rowl.col-3.col-m-9
+  .rowl.container
       h4.white-text.center-align USER LOGIN
 
       if (error)
         .row
-          .col.s12.m12.l12.offset-l2.offset-s2.offset-m2
-            h6#alert.white-text(style= "padding: 1%")= error
+          .col.s12.m12.l12
+            h6#alert.white-text.center-align= error
 
       form(method='post', action='/auth/login')
         br
-        .row
+        .row.override
           .input-field.white-text
-            input#username.validate.white-text(type='text', name= 'username', required)
+            input#username.validate.white-text(type='text', name= 'studentNo', required)
             label(for='email') Username
 
           .input-field.white-text

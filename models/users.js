@@ -3,18 +3,28 @@ var mongoose = require('mongoose'),
     passportLocalMongoose = require('passport-local-mongoose');
 
 var User = new Schema({
-    username: {
-    	type: String,
-    	required: true
+    studentNo: {
+        type: String,
+        required: true,
+        default: ""
+    },
+    name: {
+        type: String,
+        default: ""
+    },
+    yearAndSection: {
+        type: String,
+        default: ""
+    },
+    contact_number: {
+        type: Number
     },
     email: {
     	type: String,
     	required: true
-    },
-    first_name: String,
-    last_name: String,
+    }
 });
 
-User.plugin(passportLocalMongoose, {usernameField: 'email'});
+User.plugin(passportLocalMongoose, {usernameField: 'studentNo'});
 
 module.exports = mongoose.model('User', User);

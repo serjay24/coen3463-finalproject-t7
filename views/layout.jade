@@ -56,10 +56,7 @@ html
             li
               a.dropdown-button.onHover(data-activates="dropdown1")
                 i.fa.fa-caret-down.tiny.right
-                if (user.first_name == "")
-                  | #{user.username}
-                else
-                  | #{user.first_name} #{user.last_name}
+                | #{user.name}
 
           else
             li

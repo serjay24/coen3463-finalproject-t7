@@ -15,4 +15,12 @@ router.get('/', function(req, res, next) {
   
 });
 
+router.get('/contact', function(req, res) {
+	var data = {
+		title: "Support - Locker Reservation System",
+		user: req.user
+	}
+	res.render('contact', data)
+})
+
 module.exports = router;

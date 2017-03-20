@@ -15,7 +15,7 @@ var methodOverride = require('method-override');
 const restify = require('express-restify-mongoose');
 const router = express.Router();
 
-var mdbUrl = "mongodb://admin:admin@ds127730.mlab.com:27730/coen3463-todoapp-t7";
+var mdbUrl = "mongodb://admin:admin@ds131480.mlab.com:31480/locker-reservation-system";
 var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } }, 
                 replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
 mongoose.connect(mdbUrl, options, function(err, res) {
@@ -78,10 +78,6 @@ app.get('/locker1', function(req, res){
 });
 app.get('/locker2', function(req, res){
   res.render('locker2');
-});
-
-app.get('/contact', function(req, res){
-  res.render('contact');
 });
 
 app.get('/userprofile', function(req, res){
