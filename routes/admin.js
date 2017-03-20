@@ -12,14 +12,18 @@ router.get('/viewLockers', function(req, res) {
   res.render('admin_view_locker', data)
 });
 
-router.get('/clusterA', function(req, res) {
+router.get('/cluster/:letter', function(req, res) {
 
-	Locker.find({cluster: "A"}).sort({lockerNumber: 1}).exec(function(err, clusterA) {
+	var clusterSelected = req.params.letter;
+
+	console.log(clusterSelected);
+
+	Locker.find({cluster: clusterSelected}).sort({lockerNumber: 1}).exec(function(err, cluster) {
 		if (err) throw err;
 
 		var data = {
 			title: "Cluster A Lockers",
-			cluster: clusterA,
+			cluster: cluster,
 			user: req.user
 		}
 		
