@@ -29,6 +29,7 @@ mongoose.connect(mdbUrl, options, function(err, res) {
 var index = require('./routes/index');
 var users = require('./routes/users');
 var auth = require('./routes/auth');
+var locker = require('./routes/locker');
 
 var app = express();
 
@@ -71,13 +72,11 @@ app.use(function(req, res, next){
 app.use('/', index);
 app.use('/users', users);
 app.use('/auth', auth);
+app.use('/locker', locker);
 
 
 app.get('/locker1', function(req, res){
   res.render('locker1');
-});
-app.get('/locker2', function(req, res){
-  res.render('locker2');
 });
 
 app.get('/userprofile', function(req, res){

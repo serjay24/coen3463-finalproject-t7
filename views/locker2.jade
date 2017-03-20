@@ -1,13 +1,30 @@
 extends layout
 
 block content
-    
-    br
+  form(method='post', action='/locker/createLocker')
+    button(type='submit') Create
 
-    .row
-      .col.s12.m4.l4.black
-        | Cluster A Locker
-      .col.s12.m4.l4.orange
-        | Cluster B Locker
-      .col.s12.m4.l4.black
-        | Cluster C Locker
+  br
+  h3.center.white-text Choose your desire locker
+  br
+  .row.black
+    .col.s12.m4.l4.white-text
+      h4.center.white-text-text Cluster A
+      br
+      .row
+        each locker, i in clusterA
+          .col.s4.m4.l4
+            a.waves-effect.waves-white.btn-flat.orange.black-text.btn-large(href='/locker/' + locker._id + '/reserve')
+              | #{locker.cluster}#{locker.lockerNumber}
+
+    .col.s12.m4.l4
+      h4.center.white-text Cluster B
+      br
+      .row
+        each locker, i in clusterB
+          .col.s4.m4.l4
+            a.waves-effect.waves-white.btn-flat.orange.black-text.btn-large(href='/locker/' + locker._id + '/reserve')
+              | #{locker.cluster}#{locker.lockerNumber}
+
+    .col.s12.m4.l4
+      | Cluster C Locker

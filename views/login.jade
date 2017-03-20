@@ -14,8 +14,8 @@ block content
         br
         .row.override
           .input-field.white-text
-            input#username.validate.white-text(type='text', name= 'studentNo', required)
-            label(for='email') Username
+            input#username.validate.white-text(type='text', name= 'studentNo', pattern="[0-9]{4}-[0-9]{5}-[A-Z]{2}-[0-1]{1}", required)
+            label(for='studentNo', data-error="Invalid Student Number") Student Number
 
           .input-field.white-text
             input#password.validate(type='password', name= 'password', required)

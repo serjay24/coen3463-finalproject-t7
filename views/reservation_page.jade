@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  br
+  .container.orange-text.center
+    h2.center Reserve this locker
+    h4.center The following locker will be reserve to you:
+    br
+    br
+    h5
+      | Cluster: #{locker[0].cluster}
+    h5
+      | Locker: #{locker[0].cluster}#{locker[0].lockerNumber}
+    //h5
+      //| Will be reserve to: #{user.name}

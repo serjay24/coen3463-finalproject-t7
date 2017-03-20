@@ -4,4 +4,5 @@ $(document).ready(function(){
       	menuWidth: 200
       });
       $(".dropdown-button").dropdown({hover: true});
+      $('.modal').modal();
 });

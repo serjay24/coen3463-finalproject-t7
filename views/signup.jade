@@ -9,26 +9,23 @@ block content
             h6.white-text.red(style= "padding: 1%")= status
         .rows
           .input-field.white-text
-                input#studentnumber.validate(type='text', name= 'studentNumber', value= studentnumber, required)
-                label(for='studentnumber') Student Number
+                input#studentnumber.validate(type='text', name= 'studentNumber', pattern="[0-9]{4}-[0-9]{5}-[A-Z]{2}-[0-1]{1}", placeholder="2012-12345-MN-0", value= studentnumber, required)
+                label(for='studentnumber', data-error="Invalid Student Number") Student Number
           .input-field.white-text
-                input#full_name.validate(type='text', name= 'fullName', value= fullName)
+                input#full_name.validate(type='text', name= 'fullName', placeholder="Juan Dela Cruz", value= fullName, required)
                 label(for='full_name') Full Name
           .input-field.white-text
-                input#year_section.validate(type='text', name= 'yearSection', value= yearSection)
-                label(for='year_section') Year & Section
+                input#year_section.validate(type='text', name= 'yearSection', pattern="[1-5]-[1-5]" placeholder="1-1", value= yearSection, required)
+                label(for='year_section', data-error="Invalid Year and Section") Year & Section
           .input-field.white-text
-                input#contact_number.validate(type='text', name= 'contactNumber', value= contactNumber)
-                label(for='contact_number') Contact Number               
+                input#contact_number.validate(type='text', name= 'contactNumber', placeholder="09123456789", pattern="09\+[0-9]{9}" value= contactNumber, required)
+                label(for='contact_number', data-error="Invalid Contact Number") Contact Number               
           .input-field.white-text
-                input#email.validate(type='email', name= 'email', value= email, required)
-                label(for='email', data-error='Invalid Email') Email
+                input#email.validate(type='email', name= 'email', placeholder="juandc@philippines.com", value= email, required)
+                label(for='email', data-error='Invalid Email Address') Email
           .input-field.white-text
                 input#password.validate(type='password', name= 'password', value= password, required)
-                label(for='password') Password
-          .input-field.white-text
-                input#confirmpassword.validate(type='password', name= 'confirmpassword', value= confirmpassword, required)
-                label(for='confirmpassword') Confirm Password      
+                label(for='password') Password   
         .row.center
             button.btn.waves-effect.waves-light(type='submit', name='action')
               | Register
