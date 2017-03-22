@@ -41,7 +41,31 @@ h5
 {
     padding-left: 5%;
 }
-
+/*for instruction*/
+.rowm 
+{
+    border: 2px solid grey;
+    background: rgba(9, 16, 23, 0.8);
+    border-radius: 5px; 
+    margin-top: 3%;
+    margin-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    float: center;
+}
+.image-block img
+{
+    width:100%;
+    height:auto;
+    padding-left:5%;
+    padding-right:5%;
+}
+h6
+{
+    padding-left: 5%;
+    padding-right: 5%;
+    float:center;
+}
 /*for login, signup,updateprofile an userprofile*/
 a {
     text-decoration-color: black;
@@ -104,8 +128,7 @@ input:-ms-input-placeholder {
 .rowl {
     border: 2px solid grey;
     background: rgba(9, 16, 23, 0.8);
-    border-radius: 5px;
-    
+    border-radius: 5px; 
     margin-top: 3%;
     margin-bottom: 5%;
     margin-left: auto;
