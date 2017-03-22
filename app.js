@@ -79,6 +79,9 @@ app.use('/admin', admin);
 app.get('/userprofile', function(req, res){
   res.render('userprofile');
 });
+app.get('/updateprofile', function(req, res){
+  res.render('updateprofile');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

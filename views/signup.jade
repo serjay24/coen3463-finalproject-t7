@@ -27,11 +27,11 @@ block content
                 input#password.validate(type='password', name= 'password', value= password, required)
                 label(for='password') Password   
         .row.center
-            button.btn.waves-effect.waves-light(type='submit', name='action')
+            button.orange.btn.waves-effect.waves-light(type='submit', name='action')
               | Register
               i.fa.fa-send.small.left
         .row
             p.white-text.center
                 | Already have account? Click 
                 b
-                  a.blue-text.link(href= '/auth/login') Login
+                  a.red-text.link(href= '/auth/login') Login

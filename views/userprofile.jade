@@ -1,30 +1,47 @@
 extends layout
 
 block content
-    br
-    section.user_form.col-3.col-m-12
+  br
+  .container.rown.col-4.col-m-9
+      h4.white-text.center-align PROFILE
       form
-        ul
-          li USER PROFILE
-        ul
-          li
-            input#studentnumber(type='text', placeholder='Student Number', required='')
-          li
-            input#firstname(type='text', placeholder='First Name', required='')
-          li
-            input#middlename(type='text', placeholder='Middle Name', required='') 
-          li
-            input#lastname(type='text', placeholder='Last Name', required='')
-          li
-            input#yearsectionname(type='text', placeholder='Year & Section', required='')  
-          li
-            input#mobilenumber(type='text', placeholder='Contact Number', required='')  
-          li
-            input#email(type='email', placeholder='e-mail', required='')
-          li
-            input#password(type='Password', placeholder='Password', required='')
-          li
-            input#confirmpassword(type='Password', placeholder='Confirm Password', required='')
-        ul
-          li
-            input(type='submit', value='Save Changes')
+        .rows
+          p
+          br
+          b.white-text
+            | Student Number: 
+          |   #userInfo.studentNumber
+          br
+          br
+          b.white-text
+            | Full Name: 
+          |   #userInfo.fullName
+          br
+          br
+          b.white-text
+            | Year & Section: 
+          |   #userInfo.yearSection
+          br
+          br
+          b.white-text
+            | Contact Number: 
+          |   #userInfo.contactNumber
+          br
+          br
+          b.white-text
+            | Email: 
+          |   #userInfo.email
+          br
+          br
+          b.white-text
+            | Reserved Locker: 
+          |   #userInfo.lockerNumber
+          br
+          br
+         
+        .row.center
+            button.orange.btn.waves-effect.waves-light(type='submit', name='action')
+              | EDIT PROFILE
+              i.fa.fa-pencil.small.left
+             
+           

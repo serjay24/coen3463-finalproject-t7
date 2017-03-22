@@ -19,12 +19,7 @@ html
     link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css')
 
     link(rel='stylesheet', href='/stylesheets/style.css')
-    //link(rel= 'stylesheet', type= 'text/css', href= '../../stylesheets/Login.css')  
-    //link(rel= 'stylesheet', type= 'text/css', href= '../../stylesheets/signup.css')
-    //link(rel= 'stylesheet', type= 'text/css', href= '../../stylesheets/Contact.css')
-    link(rel= 'stylesheet', type= 'text/css', href= '../../stylesheets/Homepage.css')
     //link(rel= 'stylesheet', type= 'text/css', href= '../../stylesheets/locker.css')
-    //link(rel= 'stylesheet', type= 'text/css', href= '../../stylesheets/userprofile.css')
     link(rel= 'icon', type= 'image/ico', href= '../../images/locker_icon.ico')
 
   body
@@ -86,6 +81,35 @@ html
                 | Login
     
     block content
+      br
+      br
+      br
+     // Footer of the website
+    footer.page-footer.transparent
+      .container
+        .row.orange
+          p.center.white-text
+            | Created by 
+            b
+              a.link(href= 'http://coen3463-m1t7.herokuapp.com/member/delRosario.html', target= '_blank') Rish Joy Del Rosario
+            |  and 
+            b.white-text
+              a.link(href= 'http://coen3463-m1t7.herokuapp.com/member/ilaga.html', target='_blank') Serjay Ilaga
+            | .
+            |         This project can be found on 
+            b GitHub
+          .container.center.orange
+            a.waves-effect.waves-light.btn-flat.center.black.white-text(href= 'https://github.com/serjay24/coen3463-m3t7/tree/module-4', target= '_blank', style= 'text-transform: capitalize')
+              i.fa.fa-github-alt.left.small
+              | GitHub Project
+      .footer-copyright.black.lighten-1.white-text
+        .row.center
+          .col.s2.m4.l4.hide-on-small-only Software Engineering
+          .col.s12.m4.l4.hide-on-small-only
+            b © 2017 - COEN3463
+          .col.s12.hide-on-med-and-up.truncate
+            b © 2017 - COEN3463 - Software Engineering
+          .col.s2.m4.l4.hide-on-small-only Engr. Gino Tria
     
     script(type='text/javascript', src='https://code.jquery.com/jquery-2.1.1.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js')
