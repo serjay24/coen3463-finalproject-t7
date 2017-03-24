@@ -3,6 +3,8 @@ extends admin_layout
 block content
 
   br
+  br
+  br
 
   table.bordered.black.orange-text.center-align
     thead
@@ -23,3 +25,17 @@ block content
             td= locker.owner
             td= locker.email
             td= locker.contact_number
+            if(locker.status == "Reserved")
+              td
+                a.waves-effect.waves-light.btn-flat.green.black-text(href='/admin/payment/' + locker._id + '/cluster/' + locker.cluster)
+                  | Paid
+                &nbsp;
+                a.waves-effect.waves-light.btn-flat.red.white-text(href='/admin/delete/' + locker._id + '/cluster/' + locker.cluster)
+                  | Make this locker available
+            else
+              if(locker.status == "Available")
+                td
+              else
+                td
+                  a.waves-effect.waves-light.btn-flat.red.white-text(href='/admin/delete/' + locker._id + '/cluster/' + locker.cluster)
+                    | Make this locker available

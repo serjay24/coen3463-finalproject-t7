@@ -5,16 +5,55 @@ var Locker = require('../models/locker');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-	var data = {
-		title: "Locker Reservation System",
-		user: req.user
-	}
+	var clusterA;
+	var clusterB;
+	var clusterC;
+
+	
 
 	if(req.user) {
 		if(req.user.type === "Administrator") {
-			res.render('admin_index', data);
+			Locker.find({cluster: "A", status: "Available"}).exec(function(err, clusterA) {
+				if (err) throw err;
+
+				this.clusterA = clusterA.length
+
+				Locker.find({cluster: "B", status: "Available"}).exec(function(err, clusterB) {
+					if (err) throw err;
+
+					this.clusterB = clusterB.length
+
+					Locker.find({cluster: "C", status: "Available"}).exec(function(err, clusterC) {
+						if (err) throw err;
+
+						this.clusterC = clusterC.length
+
+						Locker.find({cluster: "D", status: "Available"}).exec(function(err, clusterD) {
+							if (err) throw err;
+
+							var data = {
+								title: "Locker Reservation System",
+								clusterA: this.clusterA,
+								clusterB: this.clusterB,
+								clusterC: this.clusterC,
+								clusterD: clusterD.length,
+								user: req.user
+							}
+
+							res.render('admin_index', data);
+						})
+					})
+				})
+			})
+			
 		}
 		else {
+
+			var data = {
+				title: "Locker Reservation System",
+				user: req.user
+			}
+
 			res.render('index', data);
 		}
 	}

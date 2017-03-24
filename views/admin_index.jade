@@ -3,26 +3,63 @@ extends admin_layout
 block content
   br
 
-  if (user)
-    .container.orange-text
-      h2
-          | Reserve a Locker Now
-
-    br
-    
-    .container
+  .container
+      .row.orange-text
+        .col.s12.m12.l12
+          h4
+            | Available Lockers:
       .row
-        a.card-select(href="/locker/locker1")
-          .col.s12.m6.l6
+        .col.s12.m3.l3
+          .card.black.orange-text
+            .card-content
+              h4.center
+                | Cluster A
+                br
+                br
+                | #{clusterA}
+        .col.s12.m3.l3
+          .card.black.orange-text
+            .card-content
+              h4.center
+                | Cluster B
+                br
+                br
+                | #{clusterB}
+        .col.s12.m3.l3
+          .card.black.orange-text
+            .card-content
+              h4.center
+                | Cluster C
+                br
+                br
+                | #{clusterC}
+        .col.s12.m3.l3
+          .card.black.orange-text
+            .card-content
+              h4.center
+                | Cluster D
+                br
+                br
+                | #{clusterD}
+
+      .row.orange-text
+        .col.s12.m12.l12
+          h4
+            | Admin Tools
+      .row
+        a(href="/admin/viewlockers")
+          .col.s12.m4.l4
             .card.card-selectable
               .card-content
-                h4.center Beside CEA's Library
-                br
-                img(src="../../images/locker_icon.ico")
-        a(href="/locker/locker2")
-          .col.s12.m6.l6
+                h4.center View Lockers
+        a(href="/admin/lockerrefresh")
+          .col.s12.m4.l4
             .card.card-selectable
               .card-content
-                h4.center Near ACCESS Office
-                br
-                img(src="../../images/locker_icon.ico")
+                h4.center Make All Locker Available
+                
+        a(href='#')
+          .col.s12.m4.l4
+            .card.red.white-text
+              .card-content
+                h4.center Notify Users
