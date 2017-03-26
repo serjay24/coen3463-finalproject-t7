@@ -2,6 +2,23 @@ var express = require('express');
 var router = express.Router();
 var Locker = require('../models/locker');
 
+var _ = require('lodash');
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        type: 'OAuth2',
+        user: 'cpelocker@gmail.com',
+        clientId: '955879144210-e8h36k2pt9b0lfes1qjhv4c3pvsnhu5b.apps.googleusercontent.com',
+        clientSecret: 'CcHTPUsTHWLoSfpfHJTZEGu5',
+        refreshToken: '1/oK3ihihzeBKRsy0aX2bFxiZaLxTFLF_rk0fdw6BoGXnWRnVymW-xZJX8W59dChjc',
+        accessToken: 'ya29.GlsaBEc7YIAfMsDp5OXFTuIVeL373dcQ_efZ95ti-FVYA3Ymd4QuKA4Ll1ztXkxLwwBweLDsQq_Jng_8UzLv3BBT5ZqwCZSNgrot5vjHyVGnREl5NAUju-QULX39'
+    }
+});
+
+var emailList = [];
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
@@ -39,7 +56,6 @@ router.get('/', function(req, res, next) {
 								clusterD: clusterD.length,
 								user: req.user
 							}
-
 							res.render('admin_index', data);
 						})
 					})
@@ -63,12 +79,41 @@ router.get('/', function(req, res, next) {
   
 });
 
-router.get('/contact', function(req, res) {
-	var data = {
-		title: "Support - Locker Reservation System",
-		user: req.user
-	}
-	res.render('contact', data)
+router.get('/notify-all', function(req, res) {
+
+	Locker.find({status: 'Paid'}).exec(function(err, result) {
+		for(var i = 0; i < result.length; i++) {
+			if (result[i].email === "") {
+				continue
+			}
+			else {
+				emailList.push(result[i].email);
+			}
+		}
+
+		emailList = _.uniq(emailList);
+
+
+		var notification = {
+			from: '"ACCESS" <cpelocker@gmail.com>',
+			to: emailList,
+			subject: "Cleaning of Lockers",
+			text: "Good Day,\n\n" + "All locker owner should remove their things and clean up the locker they rent.\n\n" +
+			"Please be reminded that failure to comply will affect your clearance for this semester.\n\n" +
+			"We would like to thank you for using our locker and we hope that it helps you throughout this semester.\n\n" +
+			"Godbless, and enjoy your vacation!\n\n" +
+			"- ACCESS\n\n" +
+			"This email is auto-generated."
+		}
+
+		transporter.sendMail(notification, function(err, success) {
+			if (err) throw err;
+
+			console.log('Message Sent!')
+			res.redirect('/');
+			emailList = [];
+		})
+	})
 })
 
 router.post('/createLocker', function(req, res) {

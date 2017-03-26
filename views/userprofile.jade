@@ -6,37 +6,36 @@ block content
   .container.rown.col-4.col-m-9
       h4.white-text.center-align PROFILE
       form
-        .rows
+        .rows.white-text
           p
           br
-          b.white-text
+          b.red-text
             | Student Number: 
-          |   #userInfo.studentNumber
+          |   &nbsp;#{user.studentNo}
           br
           br
-          b.white-text
+          b.red-text
             | Full Name: 
-          |   #userInfo.fullName
+          |   &nbsp;#{user.name}
           br
           br
-          b.white-text
+          b.red-text
             | Year & Section: 
-          |   #userInfo.yearSection
+          |   #{user.yearAndSection}
           br
           br
-          b.white-text
+          b.red-text
             | Contact Number: 
-          |   #userInfo.contactNumber
+          |   &nbsp;#{user.contact_number}
           br
           br
-          b.white-text
+          b.red-text
             | Email: 
-          |   #userInfo.email
+          |   &nbsp;#{user.email}
           br
           br
-          b.white-text
-            | Reserved Locker: 
-          |   #userInfo.lockerNumber
+          b.red-text
+            | Reserved Locker:
           br
           br
          

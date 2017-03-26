@@ -7,7 +7,7 @@ block content
       .row.orange-text
         .col.s12.m12.l12
           h4
-            | Available Lockers:
+            | Number of Available Lockers:
       .row
         .col.s12.m3.l3
           .card.black.orange-text
@@ -47,19 +47,44 @@ block content
           h4
             | Admin Tools
       .row
-        a(href="/admin/viewlockers")
-          .col.s12.m4.l4
-            .card.card-selectable
+        a(href='/admin/signup')
+          .col.s12.m12.l12
+            .card.blue.white-text
               .card-content
-                h4.center View Lockers
+                h4.center Add admin account
+      .row
+
+        a(href='/admin/remove-reservation')
+          .col.s12.m4.l4
+            .card.green.white-text
+              .card-content
+                h4.center Make All Reserved Lockers Available
+        
         a(href="/admin/lockerrefresh")
           .col.s12.m4.l4
             .card.card-selectable
               .card-content
+                br
+                br
                 h4.center Make All Locker Available
+                br
+
                 
-        a(href='#')
+        a(href='/notify-all')
           .col.s12.m4.l4
             .card.red.white-text
               .card-content
-                h4.center Notify Users
+                br
+                br
+                h4.center Notify Users to clean up lockers
+                br
+
+      .row
+
+        a(href="/admin/viewlockers")
+          .col.s12.m12.l12
+            .card.card-selectable
+              .card-content
+                h4.center View Lockers
+
+        

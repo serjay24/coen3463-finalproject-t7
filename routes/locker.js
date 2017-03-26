@@ -9,11 +9,11 @@ var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
         type: 'OAuth2',
-        user: 'fixit.solution.v1@gmail.com',
-        clientId: '917097726441-p35t6fo03goi9u5ct6k6n8rg0mv19fbc.apps.googleusercontent.com',
-        clientSecret: 'bIIhfXrbunz6lwWJ-7lyYyEl',
-        refreshToken: '1/yhNux2J9zxZ6Tu-NmNzKJm_GSe_7zvf6uD5SPwvW9Xk',
-        accessToken: 'ya29.GlvlA8oq4Cmm-LR7KFGOAdB6bfn1S_vr7HkQnqpjXyV7H3QflTNjPcgG6QjiZXq3AC-c_wu67AcHCCIEa-mitEszJAkRJZASTpPBH-_4N2RHVFa4XFlGjltkRAxE'
+        user: 'cpelocker@gmail.com',
+        clientId: '955879144210-e8h36k2pt9b0lfes1qjhv4c3pvsnhu5b.apps.googleusercontent.com',
+        clientSecret: 'CcHTPUsTHWLoSfpfHJTZEGu5',
+        refreshToken: '1/oK3ihihzeBKRsy0aX2bFxiZaLxTFLF_rk0fdw6BoGXnWRnVymW-xZJX8W59dChjc',
+        accessToken: 'ya29.GlsaBEc7YIAfMsDp5OXFTuIVeL373dcQ_efZ95ti-FVYA3Ymd4QuKA4Ll1ztXkxLwwBweLDsQq_Jng_8UzLv3BBT5ZqwCZSNgrot5vjHyVGnREl5NAUju-QULX39'
     }
 });
 
@@ -162,23 +162,51 @@ router.get('/:lockerId/reserveCompletion', function(req, res) {
 	}
 
 	var customer = {
-		from: '"Serjay Ilaga" <fixit.solution.v1@gmail.com>',
+		from: '"ACCESS" <cpelocker@gmail.com>',
 		to: req.user.email,
-		subject: 'Testing Nodemailer',
-		text: "Locker Reserved"
+		subject: 'Locker Reservation Complete',
+		text: "Your have successfully reserve your desire locker. Please pay the amount of P150.00 pesos at the ACCESS office.\n\n"
+		+ "Please remember that all locker reserved but not yet paid will be deleted by the admin for a certain amount of time.\n\n" +
+		"To avoid this or other problems, we encourage you to pay the amount as soon as possible.\n\n" +
+		"- ACCESS\n\n" +
+		"This email is auto-generated."
 	}
+
+	
 
 	Locker.findByIdAndUpdate({_id: lockerId}, dataToUpdate, function(err, result) {
 		if (err) throw err;
 
 		//console.log(result);
 		//res.redirect('/');
-		transporter.sendMail(customer, function(err, success) {
+		Locker.find({_id: lockerId}).exec(function(err, locker) {
 			if (err) throw err;
 
-			console.log("Message Sent!", success);
-			res.redirect('/');
-		})		
+			var admin = {
+				from: 'cpelocker@gmail.com',
+				to: 'cpelocker@gmail.com',
+				subject: 'New Locker Reservation',
+				text: "A new locker has been reserved. Here are the details:\n\n" +
+				"Name: " + locker[0].owner + "\n" +
+				"Student Number: " + locker[0].studentNo + "\n" +
+				"Cluster: " + locker[0].cluster + '\n' +
+				"Locker: " + locker[0].cluster + locker[0].lockerNumber
+			}
+
+			transporter.sendMail(customer, function(err, success) {
+				if (err) throw err;
+
+				console.log("Message Sent! - Customer Copy", success);
+				transporter.sendMail(admin, function(err, success) {
+					if (err) throw err;
+
+					console.log("Message Sent! - Admin's Copy", success);
+					res.redirect('/');
+				})
+			})
+
+		})
+				
 	})
 })
 

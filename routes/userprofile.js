@@ -3,7 +3,11 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  var data = {
+  	title: req.user.name,
+  	user: req.user
+  }
+  res.render('userprofile.jade', data)
 });
 
 module.exports = router;

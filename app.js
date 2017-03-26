@@ -27,10 +27,11 @@ mongoose.connect(mdbUrl, options, function(err, res) {
 });
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var userprofile = require('./routes/userprofile');
 var auth = require('./routes/auth');
 var locker = require('./routes/locker');
 var admin = require('./routes/admin');
+var contact = require('./routes/contact');
 
 var app = express();
 
@@ -71,14 +72,13 @@ app.use(function(req, res, next){
 });
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/userprofile', userprofile);
 app.use('/auth', auth);
 app.use('/locker', locker);
 app.use('/admin', admin);
+app.use('/contact', contact);
 
-app.get('/userprofile', function(req, res){
-  res.render('userprofile');
-});
+
 app.get('/updateprofile', function(req, res){
   res.render('updateprofile');
 });
