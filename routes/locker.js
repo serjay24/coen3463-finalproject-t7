@@ -3,6 +3,20 @@ var router = express.Router();
 var Locker = require('../models/locker');
 var User = require('../models/users');
 
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        type: 'OAuth2',
+        user: 'fixit.solution.v1@gmail.com',
+        clientId: '917097726441-p35t6fo03goi9u5ct6k6n8rg0mv19fbc.apps.googleusercontent.com',
+        clientSecret: 'bIIhfXrbunz6lwWJ-7lyYyEl',
+        refreshToken: '1/yhNux2J9zxZ6Tu-NmNzKJm_GSe_7zvf6uD5SPwvW9Xk',
+        accessToken: 'ya29.GlvlA8oq4Cmm-LR7KFGOAdB6bfn1S_vr7HkQnqpjXyV7H3QflTNjPcgG6QjiZXq3AC-c_wu67AcHCCIEa-mitEszJAkRJZASTpPBH-_4N2RHVFa4XFlGjltkRAxE'
+    }
+});
+
 router.get('/locker1', function(req, res) {
 	Locker.find({cluster: "D"}).sort({lockerNumber: 1}).exec(function(err, clusterD) {
 		if (err) throw err;
@@ -147,11 +161,24 @@ router.get('/:lockerId/reserveCompletion', function(req, res) {
 		contact_number: req.user.contact_number
 	}
 
+	var customer = {
+		from: '"Serjay Ilaga" <fixit.solution.v1@gmail.com>',
+		to: req.user.email,
+		subject: 'Testing Nodemailer',
+		text: "Locker Reserved"
+	}
+
 	Locker.findByIdAndUpdate({_id: lockerId}, dataToUpdate, function(err, result) {
 		if (err) throw err;
 
-		console.log(result);
-		res.redirect('/');		
+		//console.log(result);
+		//res.redirect('/');
+		transporter.sendMail(customer, function(err, success) {
+			if (err) throw err;
+
+			console.log("Message Sent!", success);
+			res.redirect('/');
+		})		
 	})
 })
 

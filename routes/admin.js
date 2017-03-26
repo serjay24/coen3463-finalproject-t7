@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Locker = require('../models/locker');
-var User = require('../models/users')
-
-/* GET home page. */
+var User = require('../models/users');
 
 router.get('/viewLockers', function(req, res) {
   var data = {
