@@ -18,7 +18,8 @@ var transporter = nodemailer.createTransport({
 });
 
 router.get('/locker1', function(req, res) {
-	Locker.find({cluster: "D"}).sort({lockerNumber: 1}).exec(function(err, clusterD) {
+	if(req.user) {
+	  Locker.find({cluster: "D"}).sort({lockerNumber: 1}).exec(function(err, clusterD) {
 		if (err) throw err;
 
 		var data = {
@@ -28,15 +29,20 @@ router.get('/locker1', function(req, res) {
 		}
 
 		res.render('locker1', data);
-	})
+	  })
+	}
+	else {
+		res.redirect('/auth/login');
+	}
 })
 
 router.get('/locker2', function(req, res) {
 
 	var clusterAResult;
 	var clusterBResult;
-	
-	Locker.find({cluster: "A"}).sort({lockerNumber: 1}).exec(function(err, clusterA) {
+
+	if(req.user) {
+	  Locker.find({cluster: "A"}).sort({lockerNumber: 1}).exec(function(err, clusterA) {
 		if (err) throw err;
 
 		//console.log(clusterA)
@@ -59,7 +65,11 @@ router.get('/locker2', function(req, res) {
 				res.render('locker2', data)
 			})
 		})
-	})
+	  })
+	}
+	else {
+		res.redirect('/auth/login');
+	}
 })
 
 router.post('/createLocker', function(req, res) {

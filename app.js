@@ -78,10 +78,6 @@ app.use('/locker', locker);
 app.use('/admin', admin);
 app.use('/contact', contact);
 
-
-app.get('/updateprofile', function(req, res){
-  res.render('updateprofile');
-});
 app.get('/instruction', function(req, res){
   res.render('instruction');
 });

@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var Locker = require('../models/locker');
 
+var errorMessage = "<h1>You do not have permission to access this page. Contact Administrator for support.</h1>";
+
 var _ = require('lodash');
 var nodemailer = require('nodemailer');
 
@@ -79,61 +81,54 @@ router.get('/', function(req, res, next) {
   
 });
 
-router.get('/notify-all', function(req, res) {
-
-	Locker.find({status: 'Paid'}).exec(function(err, result) {
-		for(var i = 0; i < result.length; i++) {
-			if (result[i].email === "") {
-				continue
-			}
-			else {
-				emailList.push(result[i].email);
-			}
-		}
-
-		emailList = _.uniq(emailList);
-
-
-		var notification = {
-			from: '"ACCESS" <cpelocker@gmail.com>',
-			to: emailList,
-			subject: "Cleaning of Lockers",
-			text: "Good Day,\n\n" + "All locker owner should remove their things and clean up the locker they rent.\n\n" +
-			"Please be reminded that failure to comply will affect your clearance for this semester.\n\n" +
-			"We would like to thank you for using our locker and we hope that it helps you throughout this semester.\n\n" +
-			"Godbless, and enjoy your vacation!\n\n" +
-			"- ACCESS\n\n" +
-			"This email is auto-generated."
-		}
-
-		transporter.sendMail(notification, function(err, success) {
-			if (err) throw err;
-
-			console.log('Message Sent!')
-			res.redirect('/');
-			emailList = [];
-		})
-	})
+router.get('/how-to', function(req, res) {
+	res.render('instruction');
 })
 
-router.post('/createLocker', function(req, res) {
-	for(var i = 1; i <= 15; i++) {
-		var data = {
-			cluster: "A",
-			lockerNumber: i
+router.get('/notify-all', function(req, res) {
+
+	if(req.user) {
+		if(req.user.type === "Administrator") {
+			Locker.find({status: 'Paid'}).exec(function(err, result) {
+				for(var i = 0; i < result.length; i++) {
+					if (result[i].email === "") {
+						continue
+					}
+					else {
+						emailList.push(result[i].email);
+					}
+				}
+
+				emailList = _.uniq(emailList);
+
+				var notification = {
+					from: '"ACCESS" <cpelocker@gmail.com>',
+					to: emailList,
+					subject: "Cleaning of Lockers",
+					text: "Good Day,\n\n" + "All locker owner should remove their things and clean up the locker they rent.\n\n" +
+					"Please be reminded that failure to comply will affect your clearance for this semester.\n\n" +
+					"We would like to thank you for using our locker and we hope that it helps you throughout this semester.\n\n" +
+					"Godbless, and enjoy your vacation!\n\n" +
+					"- ACCESS\n\n" +
+					"This email is auto-generated."
+				}
+
+				transporter.sendMail(notification, function(err, success) {
+					if (err) throw err;
+
+					console.log('Message Sent!')
+					res.redirect('/');
+					emailList = [];
+				})
+			})
 		}
-
-		var locker = new Locker(data);
-		locker.save(function(err, resultA) {
-			if (err) {
-				console.log(err);
-			}
-			else {
-				console.log("Success", resultA)
-			}
-		})
+		else {
+			res.send(errorMessage);
+		}
 	}
-
+	else {
+		res.redirect('/auth/login');
+	}
 })
 
 module.exports = router;

@@ -5,37 +5,28 @@ block content
   br
   .container.rown.col-4.col-m-9
       h4.white-text.center-align EDIT PROFILE
-      form(method= 'POST', action= '/auth/signup')
+      form(method= 'POST', action= '/userprofile/' + user._id + '/edit-profile')
         if (status)
             h6.white-text.red(style= "padding: 1%")= status
         br
         .rows
           .input-field.white-text
-                input#studentnumber.validate(type='text', name= 'studentNumber', value= studentnumber, required)
-                label(for='studentnumber') Student Number
-          .input-field.white-text
-                input#full_name.validate(type='text', name= 'fullName', value= fullName)
+                input#full_name.validate(type='text', name= 'fullName', value= user.name)
                 label(for='full_name') Full Name
           .input-field.white-text
-                input#year_section.validate(type='text', name= 'yearSection', value= yearSection)
-                label(for='year_section') Year & Section
+                input#year_section.validate(type='text', name= 'yearSection', pattern="[1-5]-[1-5]", value= user.yearAndSection)
+                label(for='year_section', data-error="Invalid Year and Section") Year & Section
           .input-field.white-text
-                input#contact_number.validate(type='text', name= 'contactNumber', value= contactNumber)
-                label(for='contact_number') Contact Number               
+                input#contact_number.validate(type='text', name= 'contactNumber', pattern="09\+[0-9]{9}", value= '0' + user.contact_number)
+                label(for='contact_number', data-error="Invalid Contact Number") Contact Number               
           .input-field.white-text
-                input#email.validate(type='email', name= 'email', value= email, required)
-                label(for='email', data-error='Invalid Email') Email
-          .input-field.white-text
-                input#password.validate(type='password', name= 'password', value= password, required)
-                label(for='password') Password
-          .input-field.white-text
-                input#confirmpassword.validate(type='password', name= 'confirmpassword', value= confirmpassword, required)
-                label(for='confirmpassword') Confirm Password      
+                input#email.validate(type='email', name= 'email', value= user.email, required)
+                label(for='email', data-error='Invalid Email') Email    
           br
           .row.center
-            button.red.btn.waves-effect.waves-light(type='submit', name='action')
+            a.waves-effect.waves-light.btn-flat.red(href= '/userprofile')
               | CANCEL
-            &nbsp
+            &nbsp;
             button.orange.btn.waves-effect.waves-light(type='submit', name='action')
               | UPDATE 
        

@@ -50,6 +50,8 @@ html
               i.fa.fa-home.left.small
               | Home
           li
+            a.onHover(href='/how-to') How-To
+          li
             a.onHover(href='/contact') Contact Us
 
           if (user)
@@ -68,13 +70,19 @@ html
               i.fa.fa-home.left.small.orange-text
               | Home
           li
+            a.orange-text.waves-effect.waves-white(href='/how-to')
+              i.fa.fa-question-circle.left.small.orange-text
+              | How-To
+          li
             a.orange-text.waves-effect.waves-white(href='/contact')
-              | ContactUs
+              i.fa.fa-phone.left.small.orange-text
+              | Contact Us
           
           if (user)
             
             li
               a.orange-text.waves-effect.waves-white(href='/userprofile')
+                i.fa.fa-user.left.small.orange-text
                 | Profile
             li
               a.orange-text.waves-effect.waves-white(href='/auth/logout')
@@ -83,6 +91,7 @@ html
           else
             li
               a.orange-text.waves-effect.waves-white(href='auth/login')
+                i.fa.fa-sign-in.left.small.orange-text
                 | Login
     
     block content

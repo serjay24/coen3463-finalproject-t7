@@ -62,9 +62,10 @@ html
           li
             a.orange-text.waves-effect.waves-white(href='/')
               i.fa.fa-home.left.small.orange-text
-              | Home
+              | Dashboard
           li
             a.onHover(href='/admin/viewLockers')
+              i.fa.fa-lock.left.small.orange-text
               | View Lockers      
           if (user)
             li
@@ -74,6 +75,7 @@ html
           else
             li
               a.orange-text.waves-effect.waves-white(href='auth/login')
+                i.fa.fa-sign-in.left.small.orange-text
                 | Login
     
     block content

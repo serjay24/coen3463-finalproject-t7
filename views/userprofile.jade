@@ -37,11 +37,27 @@ block content
           b.red-text
             | Reserved Locker:
           br
+          if(lockers.length != 0)
+            table.bordered
+              thead
+                tr
+                  th Cluster
+                  th Locker
+                  th Status
+              tbody
+                each locker, i in lockers
+                  tr
+                    td= locker.cluster
+                    td #{locker.cluster}#{locker.lockerNumber}
+                    td= locker.status
+          else
+            h6.center No Lockers Reserved / Paid
           br
          
         .row.center
-            button.orange.btn.waves-effect.waves-light(type='submit', name='action')
-              | EDIT PROFILE
-              i.fa.fa-pencil.small.left
+            .col.s12.m12.l12
+              a.waves-effect.waves-light.btn-flat.orange.black-text(href= '/userprofile/' + user._id + '/edit-profile')
+                i.fa.fa-pencil.small.left
+                | Edit profile
              
            

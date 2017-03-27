@@ -5,8 +5,13 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 /* GET home page. */
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login' });
+router.get('/login', function(req, res) {
+  if(!req.user) {
+    res.render('login', { title: 'Login' });
+  }
+  else {
+    res.redirect('/');
+  }
 });
 
 router.post('/login',
@@ -20,7 +25,12 @@ router.post('/login',
 });
 
 router.get('/signup', function(req, res, next) {
-	res.render('signup', {title: 'Register for an account'})
+  if(!req.user) {
+    res.render('signup', {title: 'Register for an account'});
+  }
+  else {
+    res.redirect('/');
+  }
 })
 
 router.post('/signup', function(req,res) {

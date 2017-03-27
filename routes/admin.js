@@ -4,44 +4,74 @@ var Locker = require('../models/locker');
 var User = require('../models/users');
 
 var usernameStatus;
+var errorMessage = "<h1>You do not have permission to access this page. Contact Administrator for support.</h1>";
 
 router.get('/viewLockers', function(req, res) {
-  var data = {
-  	title: "View Lockers",
-  	user: req.user
+  if(req.user) {
+    if(req.user.type === "Administrator") {
+      var data = {
+        title: "View Lockers",
+        user: req.user
+      }
+      res.render('admin_view_locker', data)
+    }
+    else {
+      res.send(errorMessage)
+    }
   }
-  res.render('admin_view_locker', data)
+  else {
+    res.redirect('/auth/login')
+  }
 });
 
 router.get('/lockerrefresh', function(req, res) {
-  var data = {
-  	studentNo: "",
-  	owner: "",
-  	email: "",
-  	contact_number: "",
-  	status: "Available"
-  }
+  if(req.user) {
+    if(req.user.type === "Administrator") {
+      var data = {
+        studentNo: "",
+        owner: "",
+        email: "",
+        contact_number: "",
+        status: "Available"
+      }
   
-  Locker.update({}, {$set: data}, {multi: true}, function(err, result) {
-  	if (err) throw err;
-  	res.redirect('/');
-  })
-
+      Locker.update({}, {$set: data}, {multi: true}, function(err, result) {
+        if (err) throw err;
+        res.redirect('/');
+      })
+    }
+    else {
+      res.send(errorMessage)
+    }
+  }
+  else {
+    res.redirect('/auth/login');
+  }
 });
 
 router.get('/remove-reservation', function(req, res) {
-	var data = {
-  	  studentNo: "",
-  	  owner: "",
-  	  email: "",
-  	  contact_number: "",
-  	  status: "Available"
+  if(req.user) {
+    if(req.user.type === "Administrator") {
+      var data = {
+      studentNo: "",
+      owner: "",
+      email: "",
+      contact_number: "",
+      status: "Available"
     }
   
     Locker.update({status: 'Reserved'}, {$set: data}, {multi: true}, function(err, result) {
-  	  if (err) throw err;
-  	  res.redirect('/');
+      if (err) throw err;
+      res.redirect('/');
     })
+    }
+    else {
+      res.send(errorMessage);
+    }
+  }
+  else {
+    res.redirect('/auth/login');
+  }
 })
 
 router.get('/payment/:lockerId/cluster/:letter', function(req, res) {
@@ -93,13 +123,23 @@ router.get('/cluster/:letter', function(req, res) {
 })
 
 router.get('/signup', function(req, res) {
-	var data = {
-		title: "Register an Admin Account",
-		user: req.user,
-		status: usernameStatus
-	}
-	res.render('admin_register', data);
-	usernameStatus = "";
+  if(req.user) {
+    if(req.user.type === "Administrator") {
+      var data = {
+        title: "Register an Admin Account",
+        user: req.user,
+        status: usernameStatus
+      }
+      res.render('admin_register', data);
+      usernameStatus = "";
+    }
+    else {
+      res.send(errorMessage);
+    }
+  }
+  else {
+    res.redirect('/auth/login');
+  }
 })
 
 router.post('/signup', function(req,res) {
